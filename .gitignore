@@ -1,1 +1,4 @@
 /vim/bundle/
+/bash/git-completion.bash
+/bash/git-prompt.sh
+/bash/.git-helpers.*/
