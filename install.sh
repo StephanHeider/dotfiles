@@ -3,6 +3,24 @@ set -euo pipefail
 
 repo_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
 backup_dir=
+arg_name=
+arg_email=
+
+usage() {
+    printf 'Usage: %s [-n|--name NAME] [-e|--email EMAIL] [-h|--help]\n' "$0"
+    printf 'Without --name/--email the values are prompted for (default: current git config).\n'
+}
+
+while (($#)); do
+    case $1 in
+        -n|--name) arg_name=${2:?--name requires a value}; shift 2 ;;
+        --name=*) arg_name=${1#*=}; shift ;;
+        -e|--email) arg_email=${2:?--email requires a value}; shift 2 ;;
+        --email=*) arg_email=${1#*=}; shift ;;
+        -h|--help) usage; exit 0 ;;
+        *) printf 'Unknown argument: %s\n' "$1" >&2; usage >&2; exit 2 ;;
+    esac
+done
 
 for dependency in git vim readlink curl sha256sum; do
     if ! command -v "$dependency" >/dev/null 2>&1; then
@@ -29,8 +47,22 @@ prompt_identity() {
     done
 }
 
-git_name=$(prompt_identity user.name 'Git user name')
-git_email=$(prompt_identity user.email 'Git email')
+if [[ -n $arg_name ]]; then
+    git_name=$arg_name
+else
+    git_name=$(prompt_identity user.name 'Git user name')
+fi
+if [[ -n $arg_email ]]; then
+    git_email=$arg_email
+else
+    git_email=$(prompt_identity user.email 'Git email')
+fi
+for value in "$git_name" "$git_email"; do
+    if [[ -z ${value//[[:space:]]/} ]]; then
+        printf 'Git name and email must not be empty.\n' >&2
+        exit 1
+    fi
+done
 
 link_config() {
     local source=$1 target=$2
