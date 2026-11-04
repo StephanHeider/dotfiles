@@ -1,0 +1,11 @@
+alias ls='ls --color=auto'
+alias ll='ls -al'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias ..='cd ..'
+command -v vim > /dev/null && alias vi='vim'
+command -v htop > /dev/null && alias top='htop'
+alias cp='rsync -aH --progress'
+
+alias gitgraph='git log --all --graph --decorate --pretty=oneline --abbrev-commit --author-date-order'
