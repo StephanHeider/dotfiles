@@ -21,7 +21,8 @@ The installer asks for your Git user name and email, offering the machine's
 existing values as defaults. They are saved in `~/.gitconfig.local`, outside
 this repository, and included by the shared Git configuration.
 
-Existing `~/.bashrc`, `~/.gitconfig`, `~/.vim`, and `~/.vimrc` are moved to a
+Existing `~/.bashrc`, `~/.gitconfig`, `~/.vim`, `~/.vimrc`, and
+`~/.copilot/settings.json` are moved to a
 unique `~/.dotfiles-backup.*` directory before being replaced with symlinks.
 Already-correct links are left alone, so the installer can be run again.
 Your old configurations are not merged; retain the backup for any

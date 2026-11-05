@@ -120,6 +120,8 @@ link_config "$repo_dir/bash/sh.bashrc" "$HOME/.bashrc"
 link_config "$repo_dir/git/gitconfig" "$HOME/.gitconfig"
 link_config "$repo_dir/vim" "$HOME/.vim"
 link_config "$repo_dir/vim/vimrc" "$HOME/.vimrc"
+mkdir -p -- "$HOME/.copilot"
+link_config "$repo_dir/copilot/settings.json" "$HOME/.copilot/settings.json"
 
 printf 'Installing the existing Vim plugin list...\n'
 vim -N -es -u "$HOME/.vimrc" -i NONE '+PluginInstall' '+qall'
