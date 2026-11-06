@@ -1,7 +1,28 @@
 {
   "memory": false,
   "extraKnownMarketplaces": {
-    "mattpocock": { "source": { "source": "github", "repo": "mattpocock/skills"
-}, "autoUpdate": true }
+    "mattpocock": {
+      "source": {
+        "source": "github",
+        "repo": "mattpocock/skills"
+      },
+      "autoUpdate": true
+    }
+  },
+  "footer": {
+    "showDirectory": true,
+    "showBranch": true,
+    "showContextWindow": true,
+    "showQuota": false,
+    "showAiUsed": false,
+    "showAgent": true,
+    "showCodeChanges": false,
+    "showUsername": false,
+    "showSandbox": true,
+    "showYolo": false,
+    "showCiStatus": false,
+    "showSchedules": true,
+    "showPullRequest": false,
+    "showCustom": true
   }
 }
